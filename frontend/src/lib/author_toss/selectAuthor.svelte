@@ -1,5 +1,8 @@
 <script lang="ts">
     import { onMount } from 'svelte'
+    import LoadingScreen from './loadingScreen.svelte';
+
+    let isLoading = false;
 
     interface Author {
         name: String,
@@ -31,6 +34,7 @@
 
     //대리인 등록
     async function registerAgent(): Promise<void> {
+        isLoading = true;
         const trimmedName = inputname.trim();
         const trimmedEmail = inputkakaoemail.trim();
         if (trimmedName === '' || trimmedEmail === '') {
@@ -56,6 +60,9 @@
             if (!res.ok) {
                 throw new Error('db에 Author 저장 실패')
             }
+            
+            setTimeout(() => { isLoading = false; }, 1500); //debug: 로딩창 잘되는지 일부러 1.5초 로딩 띄우기
+            //isLoading = false
         } catch (err) {
             console.error("insertAuthor 에러: ", err);
         }
@@ -76,3 +83,6 @@
     {/each}
     </ul>
 </div>
+
+<!-- 로딩 예시 -->
+<LoadingScreen isVisible={isLoading} message="잠시만 기다려주세요..."/>
