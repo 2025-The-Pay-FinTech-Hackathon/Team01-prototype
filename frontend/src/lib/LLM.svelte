@@ -1,4 +1,5 @@
 <script lang="ts">
+	  import Router from "svelte-spa-router";
 
 	// configuration 
 
@@ -112,6 +113,9 @@
 
 	const onKeydown = (e: KeyboardEvent) => e.key === 'Enter' && sendMessage();
 
+	function route_SelectAuthor() {
+		window.location.hash = "/selectAuthor";
+	}
 
 </script>
 
@@ -147,6 +151,13 @@
 </div>
 
 
+<!-- 대리인 지정 버튼 -->
+<div style="position: fixed; top: 20px; right: 20px">
+	<input type="button" value="대리인 지정하러 가기"
+	style="color: white; background-color: #4CAF50; font-size: 14px;
+	padding: 12px 20px; border-radius: 8px"
+	onclick={route_SelectAuthor} />
+</div>
 
 
 

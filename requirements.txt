@@ -8,3 +8,5 @@ typing-extensions
 openai
 tinydb
 scipy
+python-multipart
+resemblyzer

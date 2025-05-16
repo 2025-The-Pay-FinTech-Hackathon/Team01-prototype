@@ -109,6 +109,22 @@ async def verify_voice_id(file: UploadFile) -> bool:
 
 
 
+class Author(BaseModel):
+    name: str
+    kakaoemail: str
+    
+@app.post('/insertAuthor') 
+def insertAuthor(data: Author): # Author을 db에 insert
+    print("여기") #debug
+    db.insert(data.model_dump())
+    return ({"message": "db에 author정보 upload 완료"})
+
+@app.get('/searchAuthor')
+async def searchAllAuthor(): #모든 Author을 db에서 찾기
+    retData: Author = db.all()
+    return ({"message": "조회 완료", "data": retData})
+
+
 # 블록체인 프록시
 EXPRESS_BASE_URL = 'http://localhost:3000'
 
