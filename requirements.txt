@@ -10,3 +10,6 @@ tinydb
 scipy
 numpy
 resemblyzer
+transformers
+torchaudio
+soundfile

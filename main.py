@@ -91,7 +91,7 @@ async def stream(request: StreamRequest):
 from src.voice import voice_to_text 
 
 @app.post('/post_voice')
-async def set_voice(request: VoiceRequest):
+async def transcribe_voice(request: VoiceRequest):
     transcription = voice_to_text(request.voice_base64)
     return transcription
 
